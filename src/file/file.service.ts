@@ -1,35 +1,49 @@
 import { Injectable } from '@nestjs/common';
-import { createCanvas, PNGStream } from 'canvas';
-import { ReadableStream } from 'node:stream/web';
+import { createCanvas, JPEGStream, PNGStream } from 'canvas';
+import * as uniqolor from 'uniqolor';
 
 @Injectable()
 export class FileService {
   createImageStream({
     text='test image', 
-    width = 1200, 
+    width = 600,
     height = 600
   }: {
     text?: string,
     width?: number,
     height?: number 
-  }): PNGStream {
+  }): JPEGStream {
 
     const canvas = createCanvas(width, height);
     const context = canvas.getContext('2d');
 
-    context.fillStyle = '#0b0118';
+    const gradient = context.createLinearGradient(0, height, width, 0);
+    gradient.addColorStop(0, getRandomColor());
+    gradient.addColorStop(1, getRandomColor());
+    context.fillStyle = gradient;
     context.fillRect(0, 0, width, height);
 
-    context.font = 'bold 75pt Menlo';
-    context.textBaseline = 'top';
+    const fontSize = 60;
+    context.font = `bold ${fontSize}px Menlo`;
+    context.textBaseline = 'middle';
     context.textAlign = 'center';
-    context.fillStyle = '#b98001';
 
     const textWidth = context.measureText(text).width;
-    context.fillRect(590 - textWidth / 2 - 10, 170 - 5, textWidth + 20, 120);
-    context.fillStyle = '#fff';
-    context.fillText(text, 600, 180);
 
-    return canvas.createPNGStream();
+    context.fillStyle = '#000';
+    context.fillRect((width - textWidth) / 2 - 10, (height - fontSize) / 2 - 10, textWidth + 20, fontSize + 20);
+    
+    context.fillStyle = '#fff';
+    context.fillText(text, width / 2, height / 2);
+
+    return canvas.createPNGStream({compressionLevel: 0});
   }
+}
+
+function getRandomColor():string {
+    const color = uniqolor.random({
+        saturation: [50, 100],
+        lightness: [50, 80],
+    });
+    return color.color;
 }
