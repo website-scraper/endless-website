@@ -21,11 +21,12 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@fastify/view": "^7.0.0",
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
-    "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/platform-fastify": "^9.0.5",
     "canvas": "^2.9.3",
-    "hbs": "^4.2.0",
+    "handlebars": "^4.7.7",
     "human-id": "^4.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

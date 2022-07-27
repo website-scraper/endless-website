@@ -16,7 +16,7 @@ describe('AppController', () => {
 
   describe('root', () => {
     it('should return an object with "imageUrls" property', () => {
-      expect(appController.root()).toHaveProperty('imageUrls');
+      expect(appController.root('test')).toHaveProperty('imageUrls');
     });
   });
 });

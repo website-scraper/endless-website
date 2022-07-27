@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get(['/', '/pages/(:pageName).html'])
+  @Get(['/', '/pages/:pageName.html'])
   @Render('index')
   root(@Param('pageName') pageName: string) {
     return {
