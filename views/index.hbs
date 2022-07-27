@@ -22,7 +22,7 @@
         <div class="content">
             <h2>Links ({{ linkUrls.length }})</h2>
             {{#each linkUrls}}
-                <a href="{{this}}">{{this}}</a>
+                <a href="{{this.url}}">{{this.name}}</a>
             {{/each}}
         </div>
     {{/if}}
@@ -32,7 +32,7 @@
         <div class="content">
             <h2>Images ({{ imageUrls.length }})</h2>
             {{#each imageUrls}}
-                <img src="{{this}}" />
+                <img src="{{this.url}}" />
             {{/each}}
         </div>
     {{/if}}
