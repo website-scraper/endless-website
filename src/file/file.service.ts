@@ -23,7 +23,7 @@ export class FileService {
     context.fillStyle = gradient;
     context.fillRect(0, 0, width, height);
 
-    const fontSize = 60;
+    const fontSize = 30;
     context.font = `bold ${fontSize}px Menlo`;
     context.textBaseline = 'middle';
     context.textAlign = 'center';

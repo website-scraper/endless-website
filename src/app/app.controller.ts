@@ -7,10 +7,10 @@ export class AppController {
 
   @Get(['/', '/pages/(:pageName).html'])
   @Render('index')
-  root(@Param('pageName') pageName: string = 'Test page') {
+  root(@Param('pageName') pageName: string) {
     return {
-      pageName,
-      imageUrls: this.appService.getImageUrls(100),
+      pageName: pageName || 'root',
+      imageUrls: this.appService.getImageUrls(100, pageName),
       linkUrls: this.appService.getLinkUrls(20)
     };
   }

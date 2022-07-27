@@ -3,8 +3,8 @@ import humanId from 'human-id'
 
 @Injectable()
 export class AppService {
-  getImageUrls(count:Number = 0): Array<string> {
-    return Array.from(new Array(count), (x, i) => `/files/images/${++i}.jpg`);​​​​​
+  getImageUrls(count:Number = 0, prefix:string = ''): Array<string> {
+    return Array.from(new Array(count), (x, i) => `/files/images/${prefix}${++i}.jpg`);​​​​​
   }
 
   getLinkUrls(count:Number = 0): Array<string> {
