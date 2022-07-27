@@ -3,7 +3,7 @@ import { RouterModule } from '@nestjs/core';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-import { FileModule } from './file/file.module';
+import { FileModule } from '../file/file.module';
 
 @Module({
   imports: [
