@@ -24,7 +24,7 @@
     "@fastify/view": "^7.0.0",
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
-    "@nestjs/platform-fastify": "^9.0.5",
+    "@nestjs/platform-fastify": "^9.4.3",
     "canvas": "^2.9.3",
     "handlebars": "^4.7.7",
     "human-id": "^4.0.0",
