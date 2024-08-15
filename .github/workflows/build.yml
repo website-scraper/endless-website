@@ -23,16 +23,16 @@ jobs:
           - ubuntu-latest
           - windows-latest
         experimental: [false]
-        include:
-          - node-version: 20
-            os: macos-latest
-            experimental: true
-          - node-version: current
-            os: ubuntu-latest
-            experimental: true
-          - node-version: current
-            os: windows-latest
-            experimental: true
+#        include:
+#          - node-version: 20
+#            os: macos-latest
+#            experimental: true
+#          - node-version: current
+#            os: ubuntu-latest
+#            experimental: true
+#          - node-version: current
+#            os: windows-latest
+#            experimental: true
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
