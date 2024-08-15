@@ -1,0 +1,51 @@
+name: Build and Test
+
+on:
+  workflow_dispatch: ~
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build_and_test:
+    name: Build and Test
+    runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.experimental }}
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version:
+          - 16
+          - 18
+          - 20
+        os:
+          - ubuntu-latest
+          - windows-latest
+        experimental: [false]
+        include:
+          - node-version: 20
+            os: macos-latest
+            experimental: true
+          - node-version: current
+            os: ubuntu-latest
+            experimental: true
+          - node-version: current
+            os: windows-latest
+            experimental: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm i
+      - name: Check the application
+        uses: BerniWittmann/background-server-action@v1
+        with:
+          command: curl -sSf http://127.0.0.1:3000 > /dev/null
+          command-windows: curl -sSf http://127.0.0.1:3000 > NIL
+          build: npm run build
+          start: npm run start:prod
+          wait-on: sleep 5
