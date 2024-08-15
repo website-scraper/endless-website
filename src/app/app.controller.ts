@@ -8,16 +8,16 @@ export class AppController {
   @Get(['/', '/pages/:pageName.html'])
   @Render('index')
   root(
-    @Param('pageName') pageName: string, 
-    @Query('img') imagesCount: string = '100',
-    @Query('a') linksCount: string = '20'
+    @Param('pageName') pageName: string,
+    @Query('img') imagesCount = '100',
+    @Query('a') linksCount = '20',
   ) {
     const childPageQuery = `?img=${imagesCount}&a=${linksCount}`;
 
     return {
       pageName: pageName || 'root',
       imageUrls: this.appService.getImageUrls(Number(imagesCount), pageName),
-      linkUrls: this.appService.getLinkUrls(Number(linksCount), childPageQuery)
+      linkUrls: this.appService.getLinkUrls(Number(linksCount), childPageQuery),
     };
   }
 }
