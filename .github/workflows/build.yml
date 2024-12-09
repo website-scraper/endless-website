@@ -41,6 +41,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: npm i
+      - name: Install dependencies
+        run: npm run lint
       - name: Check the application
         uses: BerniWittmann/background-server-action@v1
         with:

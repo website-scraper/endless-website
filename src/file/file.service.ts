@@ -1,19 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { createCanvas, JPEGStream, PNGStream } from 'canvas';
+import { createCanvas, PNGStream } from 'canvas';
 import * as uniqolor from 'uniqolor';
 
 @Injectable()
 export class FileService {
   createImageStream({
-    text='test image', 
+    text = 'test image',
     width = 600,
-    height = 600
+    height = 600,
   }: {
-    text?: string,
-    width?: number,
-    height?: number 
-  }): JPEGStream {
-
+    text?: string;
+    width?: number;
+    height?: number;
+  }): PNGStream {
     const canvas = createCanvas(width, height);
     const context = canvas.getContext('2d');
 
@@ -31,19 +30,24 @@ export class FileService {
     const textWidth = context.measureText(text).width;
 
     context.fillStyle = '#000';
-    context.fillRect((width - textWidth) / 2 - 10, (height - fontSize) / 2 - 10, textWidth + 20, fontSize + 20);
-    
+    context.fillRect(
+      (width - textWidth) / 2 - 10,
+      (height - fontSize) / 2 - 10,
+      textWidth + 20,
+      fontSize + 20,
+    );
+
     context.fillStyle = '#fff';
     context.fillText(text, width / 2, height / 2);
 
-    return canvas.createPNGStream({compressionLevel: 0});
+    return canvas.createPNGStream({ compressionLevel: 0 });
   }
 }
 
-function getRandomColor():string {
-    const color = uniqolor.random({
-        saturation: [50, 100],
-        lightness: [50, 80],
-    });
-    return color.color;
+function getRandomColor(): string {
+  const color = uniqolor.random({
+    saturation: [50, 100],
+    lightness: [50, 80],
+  });
+  return color.color;
 }
