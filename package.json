@@ -1,8 +1,8 @@
 {
-  "name": "fake-website",
+  "name": "endless-website",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Sofiia Antypenko <sofiia@antypenko.pp.ua>",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
