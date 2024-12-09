@@ -8,7 +8,7 @@ E.g. http://localhost:3000?a=100&img=500 serves (slowly) a website with 100 link
 
 ## Requirements
 
-* Node.js version > 16 (lower versions were not tested)
+* Node.js version >=20 (lower versions are not tested, but might work)
 
 ## Installation
 
